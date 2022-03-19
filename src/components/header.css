@@ -1,0 +1,9 @@
+.link-item>li>a{
+    color: white !important;
+}
+.link-item>li>a:hover{
+    color: blueviolet !important;
+}
+body{
+    font-family: 'Nunito', sans-serif;
+}
