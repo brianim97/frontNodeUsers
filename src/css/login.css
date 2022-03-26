@@ -1,0 +1,8 @@
+.alert{
+    position: relative;
+    transition: left 3s;
+    left: 0;
+}
+.hidden{
+    left: -1000%;    
+}

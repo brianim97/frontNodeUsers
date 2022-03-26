@@ -1,9 +1,71 @@
-.link-item>li>a{
-    color: white !important;
+.ulItems>li{
+    list-style: none;    
 }
-.link-item>li>a:hover{
-    color: blueviolet !important;
+.ulItems>li>a{
+    text-decoration: none;
 }
 body{
     font-family: 'Nunito', sans-serif;
 }
+
+@media screen and (max-width:1000px){  
+    .ulItems{
+        position: absolute;
+        top:-100%;
+        transition: top 1s;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: #fefefe;
+    }
+    .ulItems>li{
+        padding: 10px 0 ;
+    }
+    .btnToggle{
+        z-index: 2;
+        position: relative;
+        background-color: #fff;
+        border: none;
+    }
+    .navContainer{
+        background-color: #fefefe;
+    }
+    .ulItems>li>a:hover{
+        color: black !important;
+    }
+    .ulItems>li>a{
+        color: #000 !important;
+        padding: 0 15px;
+    }
+    .ulItems>li>button{
+        color: brown !important;
+        padding: 0 15px;
+    }
+}
+@media screen and (min-width:1001px){
+    .ulItems{
+        display: flex;
+        justify-content: center;
+        position: static;
+    }
+    .btnToggle{
+        display: none;
+    }
+    .ulItems>li>a:hover{
+        color: #0069c0 !important;
+    }
+    .ulItems>li>a{
+        color: #555 !important;
+        padding: 0 15px;
+    }
+    .navContainer{
+        box-shadow: 0 4px 8px rgb(0 0 0 / 8%);
+        padding: 15px;
+        margin-top: 10px;
+    }
+    .topNav{
+        height: 10px;
+        background-color: #f9f9f9;
+    }
+}
+

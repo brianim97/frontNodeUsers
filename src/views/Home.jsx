@@ -1,14 +1,8 @@
-
-
-
-
-const handleOnClick = ()=>{
-    alert('me tocaste gay')
-}
 export const Home = () => {
   return (
-    <div>
-        Home
-    </div>
-  )
-}
+    <h1 className="mt-5 text-center">
+      THIS IS THE HOME
+    </h1>
+     
+  );
+};

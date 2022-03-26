@@ -1,0 +1,9 @@
+.menu{
+    position: absolute;
+    transition: top 1s;
+    top :-100%;
+}
+.open{
+    top: 0 ;
+}
+

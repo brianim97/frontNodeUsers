@@ -1,35 +1,53 @@
-import './header.css'
-import {Link, useNavigate} from 'react-router-dom';
-import {useState,useContext } from 'react';
-import { LoginContext } from '../context/LoginContext';
-import { logOut } from '../helpers/logOut';
-
+import "./header.css";
+import { Link} from "react-router-dom";
+import { useState,useRef, useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
 
 
 export const Header = () => {
-    let navigate = useNavigate();
-    const {logged,setLogged} = useContext(LoginContext)
-    console.log(logged)
-   
-    
-  return (
-        // { !logged ? navigate('/login') 
-        //   : ''
-        // }
-        <div className="container-fluid bg-dark text-light" >
-            <div className="row">
-                <div className="nav justify-content-end">
-                    <ul className="d-flex list-unstyled m-0 p-3 fw-bold link-item">
-                        <li className="p-1"><Link className="text-decoration-none" to="/">Home</Link></li>
-                        <li className="p-1"><Link className="text-decoration-none" to="/account">Account</Link></li>
-                        <li className="p-1"><Link className="text-decoration-none" to="/contact">Contact</Link></li>
-                        <li className="p-1"><Link className="text-decoration-none" to="/register">Register</Link></li>
-                        <li className="p-1"><button className='btn btn-light' onClick={()=>logOut(setLogged)}>Log Out</button></li>
-                    </ul>
-                </div>
+  const { logged, setLogged } = useContext(LoginContext);
 
-            </div>
-        </div>
-       
-  )
+  const logOut = (setLogged) => {
+    setLogged(false);
+    window.localStorage.clear();
+    location.reload();
+  };
+  
+  const [menuToggle, setMenuToggle] = useState(false);
+  const refMenu = useRef();
+  const refMenuBtn = useRef();
+  const refNav = useRef();
+  const refIconToggle = useRef();
+
+  const handleToggleMenu = ()=>{
+    if(menuToggle){
+      setMenuToggle(false)
+      refMenu.current.style.top = '-100%';
+      refIconToggle.current.classList.replace('bi-x-lg','bi-list') 
+    }else{
+      setMenuToggle(true)
+      const calculate = refNav.current.offsetTop + refNav.current.clientHeight-1;
+      console.log(calculate);
+      refMenu.current.style.top = calculate+'px';
+      refIconToggle.current.classList.replace('bi-list','bi-x-lg') 
+    }
 }
+  return (
+    <>
+    <div className="topNav"></div>
+    <nav ref={refNav} className="navContainer">
+      <button onClick={handleToggleMenu} ref={refMenuBtn} className="btnToggle"><i ref={refIconToggle} className="bi bi-list fs-1"></i></button>
+      <ul ref={refMenu} className="ulItems">
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/account'>Account</Link></li>
+        <li><Link to='/products'>Products</Link></li>
+        <li><Link to='/categories'>Categories</Link></li>
+        <li><button style={{
+          border:'none',
+          backgroundColor:'transparent'
+        }} onClick={()=>logOut(setLogged)}>Log Out</button></li>
+      </ul>
+    </nav>
+    </>
+  );
+};
