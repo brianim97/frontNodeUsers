@@ -28,11 +28,14 @@ export const Login = () => {
       .then(function (response) {
         window.localStorage.setItem('token', response.data.token);
         window.localStorage.setItem('mail', response.data.user.mail);
-        window.localStorage.setItem('pass', response.data.user.password);
-        setLogged(true);
+        window.localStorage.setItem('uid', response.data.user.uid);
+        setLogged(localStorage.getItem('token')); //a
         location.reload();
       })
       .catch(function (error) {
+        if(error.response){
+          console.log(error.response.data.msg);
+        }
         setErrors('Mail o contraseña invalido 😢😢🤷‍♂️🤷‍♀️')
         refError.current.classList.remove('d-none')
         setTimeout(() => {

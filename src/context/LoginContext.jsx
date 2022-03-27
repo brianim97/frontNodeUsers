@@ -4,7 +4,7 @@ export const LoginContext = createContext();
 
 const isLogged = ()=>{
     if(localStorage.getItem('token')){
-        return true;
+        return localStorage.getItem('token');
     }
 }
 export const LoginProvider = ({children})=>{

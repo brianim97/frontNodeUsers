@@ -1,5 +1,5 @@
 import "./header.css";
-import { Link} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useState,useRef, useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 
@@ -38,14 +38,15 @@ export const Header = () => {
     <nav ref={refNav} className="navContainer">
       <button onClick={handleToggleMenu} ref={refMenuBtn} className="btnToggle"><i ref={refIconToggle} className="bi bi-list fs-1"></i></button>
       <ul ref={refMenu} className="ulItems">
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/account'>Account</Link></li>
-        <li><Link to='/products'>Products</Link></li>
-        <li><Link to='/categories'>Categories</Link></li>
+        <li><NavLink className={({isActive})=>isActive?'active':''} to='/'>Home</NavLink></li>
+        <li><NavLink className={({isActive})=>isActive?'active':''} to='/account'>Account</NavLink></li>
+        <li><NavLink className={({isActive})=>isActive?'active':''} to='/products'>Products</NavLink></li>
+        <li><NavLink className={({isActive})=>isActive?'active':''} to='/categories'>Categories</NavLink></li>
         <li><button style={{
           border:'none',
-          backgroundColor:'transparent'
-        }} onClick={()=>logOut(setLogged)}>Log Out</button></li>
+          backgroundColor:'transparent',
+          padding:'0'
+        }} onClick={()=>logOut(setLogged)}><span className="text-logout">Log Out</span> <i className="bi bi-power fs-2 icon-logout"></i></button></li>
       </ul>
     </nav>
     </>

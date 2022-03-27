@@ -7,7 +7,10 @@
 body{
     font-family: 'Nunito', sans-serif;
 }
-
+.active{
+    border-bottom: 2px solid #0069c0 ;
+}
+/* MOBILE */
 @media screen and (max-width:1000px){  
     .ulItems{
         position: absolute;
@@ -35,13 +38,24 @@ body{
     }
     .ulItems>li>a{
         color: #000 !important;
-        padding: 0 15px;
+        
     }
     .ulItems>li>button{
         color: brown !important;
-        padding: 0 15px;
+        
+    }
+    .text-logout{
+        display: none;
+    }
+    .icon-logout{
+        background-color: rgb(43, 43, 43);
+        color: white;
+        border-radius: 50%;
+        padding: 0 5px;
+        
     }
 }
+/* DESKTOP */
 @media screen and (min-width:1001px){
     .ulItems{
         display: flex;
@@ -51,12 +65,15 @@ body{
     .btnToggle{
         display: none;
     }
+    .ulItems>li{
+        padding: 0 15px;
+    }
     .ulItems>li>a:hover{
         color: #0069c0 !important;
     }
     .ulItems>li>a{
         color: #555 !important;
-        padding: 0 15px;
+       
     }
     .navContainer{
         box-shadow: 0 4px 8px rgb(0 0 0 / 8%);
@@ -66,6 +83,12 @@ body{
     .topNav{
         height: 10px;
         background-color: #f9f9f9;
+    }
+    .icon-logout{
+        display: none;
+    }
+    .text-logout:hover{
+        color: brown;
     }
 }
 

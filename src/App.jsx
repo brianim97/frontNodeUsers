@@ -11,10 +11,27 @@ import { Login } from './views/Login';
 import {useContext, useState} from 'react'
 import { Products } from './views/Products';
 import { Categories } from './views/Categories';
+import './css/app.css'
 
 function App() {
   const [logged, setLogged] = useState(localStorage.getItem('token')); 
-
+  const token = localStorage.getItem('token');
+  fetch('https://brianiriarte.herokuapp.com/api/auth/token-verify',{
+    method:'post',
+    headers:{
+      'x-token': token
+    }
+  })
+  .then(res=>{
+    if(res.status == 204){
+      console.log('conected');
+      setLogged(token)
+    }else{
+      setLogged(false)
+    }
+  })
+    
+  
   return (
     <LoginProvider>
       <BrowserRouter>
