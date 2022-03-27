@@ -17,7 +17,7 @@ export const FormProducts = ({logged,isEdit}) => {
             setData(res.categories)
             console.log(res);
         })
-    }, [data]);
+    }, []);
 
     const insertarProducto = (e)=>{
         e.preventDefault();
@@ -55,7 +55,7 @@ export const FormProducts = ({logged,isEdit}) => {
       <input onChange={(e)=>setName(e.target.value)} type="text" className="form-control"/>
 
       <label className="mt-3">Categoria *</label>
-      <select onChange={(e)=>setCategory(e.target.value)} value={category} className="form-control">
+      <select onChange={(e)=>setCategory(e.target.value)} value='' className="form-control">
       {data && data.map(el=>((
           <option defaultValue={el._id} key={el._id} value={el._id}>{el.name}</option>
       )))}

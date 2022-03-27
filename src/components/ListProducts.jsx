@@ -10,28 +10,41 @@ export const ListProducts = ({logged,setIsEdit}) => {
         })
         .then(res=>res.json())
         .then(res=>{
-            setProducts(res.products)
+            setProducts(res)
             console.log(res);
         })
     }, []);
   
     return (
-        <>
-          {products && products.map(el=>(
-            <div key={el._id} className="card" style={{width: '18rem'}}>
-                <div className="card-body">
-                <h5 className="card-title">{el.name}</h5>
-                <h6 className='text-secondary'>{el.categorie.name}</h6>
-                <img className='img-fluid' src={el.img} alt="" />
-                <h5 className="text-center py-2">$&nbsp;{el.price}</h5>
-                <div className='d-flex justify-content-between'>
-                    <button onClick={()=>setIsEdit(true)} className='btn '>Editar</button>
-                    <button className='btn '>Eliminar</button>
-                </div>
-                </div>
-            </div>
-          ) )}
-        </>
+              <div className='table-responsive'>
+                  <table className="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>Nombre</th>
+                              <th>Categoria</th>
+                              <th>Imagen</th>
+                              <th>Precio</th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {products && products.products.map(el=>(
+                          <tr key={el._id}>
+                             <td>{el.name}</td>
+                              <td>{el.categorie.name}</td>
+                              <td><img src={el.img} className='w-25' alt="" /></td>
+                              <td>{el.price}</td>
+                              <td>
+                                <div className='d-flex justify-content-between'>
+                                    <button onClick={()=>setIsEdit(true)} className='btn '>Editar</button>
+                                    <button className='btn '>Eliminar</button>
+                                </div>
+                              </td>
+                          </tr>))
+                        }
+                      </tbody>
+                  </table>
+              </div>
   )
 }
 
