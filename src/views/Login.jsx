@@ -29,7 +29,8 @@ export const Login = () => {
         window.localStorage.setItem('token', response.data.token);
         window.localStorage.setItem('mail', response.data.user.mail);
         window.localStorage.setItem('uid', response.data.user.uid);
-        setLogged(localStorage.getItem('token')); //a
+        setLogged(localStorage.getItem('token')); //
+        
         location.reload();
       })
       .catch(function (error) {
@@ -47,39 +48,40 @@ export const Login = () => {
 
  
 
-  return (
-    <div className='container'>
+  return ( 
+      <div className='container'>
       <div className='row'>
         <div className='col-12 col-md-4 m-auto mt-5'>
           <h4 className='text-center mb-4'>Bienvenid@</h4>
           <input placeholder='Mail..' type='text' className='form-control' value={mail} onChange={(e)=> handleMail(e)} autoComplete='off'/>
           <input
-            value={password}
-            onChange={(e)=>handlePass(e)}
-            placeholder='Password..'
-            type='password'
-            className='form-control mt-2'
-            autoComplete='off'
+          value={password}
+          onChange={(e)=>handlePass(e)}
+          placeholder='Password..'
+          type='password'
+          className='form-control mt-2'
+          autoComplete='off'
           />
           <div className='d-flex justify-content-between align-items-center mt-3'>
-            <div className='d-flex flex-column'>
-              <a className='fw-bold text-decoration-none text-dark' href='#'>
-                Olvidaste tu contraseña?
-              </a>
-              <a className='fw-bold text-decoration-none text-dark' href='#'>
-                Registrarme
-              </a>
-            </div>
-            <button className='btn btn-dark p-2' onClick={handlerLogin}>
-              INGRESAR
-            </button>
+          <div className='d-flex flex-column'>
+          <a className='fw-bold text-decoration-none text-dark' href='#'>
+          Olvidaste tu contraseña?
+          </a>
+          <a className='fw-bold text-decoration-none text-dark' href='#'>
+          Registrarme
+          </a>
           </div>
-            
-            
-           
-            <h6 ref={refError} className='alert alert-danger mt-3 text-center d-none'>{errors}</h6>
-        </div>
-      </div>
-    </div>
-  );
-};
+          <button className='btn btn-dark p-2' onClick={handlerLogin}>
+          INGRESAR
+          </button>
+          </div>
+          
+          
+          
+          <h6 ref={refError} className='alert alert-danger mt-3 text-center d-none'>{errors}</h6>
+          </div>
+          </div>
+          </div>
+        
+          );
+        };

@@ -8,7 +8,7 @@ import { Contact } from './views/Contact';
 import { Register } from './views/Register';
 import {LoginProvider,LoginContext} from './context/LoginContext';
 import { Login } from './views/Login';
-import {useContext, useState} from 'react'
+import {useContext, useState, useEffect} from 'react'
 import { Products } from './views/Products';
 import { Categories } from './views/Categories';
 import './css/app.css'
@@ -16,26 +16,30 @@ import './css/app.css'
 function App() {
   const [logged, setLogged] = useState(localStorage.getItem('token')); 
   const token = localStorage.getItem('token');
-  fetch('https://brianiriarte.herokuapp.com/api/auth/token-verify',{
-    method:'post',
-    headers:{
-      'x-token': token
+ 
+    if(token){
+      fetch('https://brianiriarte.herokuapp.com/api/auth/token-verify',{
+      method:'post',
+      headers:{
+        'x-token': token
+      }
+    })
+    .then(res=>{
+      if(res.status == 204){
+        setLogged(token)
+      }else{
+        setLogged(false)
+      }
+    })
+
     }
-  })
-  .then(res=>{
-    if(res.status == 204){
-      console.log('conected');
-      setLogged(token)
-    }else{
-      setLogged(false)
-    }
-  })
+  
     
   
   return (
     <LoginProvider>
       <BrowserRouter>
-      {logged ?
+      {logged?
         <>
         <Header/>
         <Routes>
@@ -50,14 +54,17 @@ function App() {
         </>
           :
           <>
-          {location.pathname != "/login" ?
+          {location.pathname != "/login"  ?
               <Login/>
               :
               ''
           }  
+         
+          
           <Routes>
               <Route path='/login' element={<Login/>}/>
           </Routes>
+          
           </>
           }
       </BrowserRouter>

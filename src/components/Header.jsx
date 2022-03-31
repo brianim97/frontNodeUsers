@@ -11,6 +11,7 @@ export const Header = () => {
     setLogged(false);
     window.localStorage.clear();
     location.reload();
+
   };
   
   const [menuToggle, setMenuToggle] = useState(false);
