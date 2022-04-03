@@ -1,0 +1,53 @@
+:root{
+    --text-primary:rgb(49, 105, 226);
+}
+body{
+    background-color: #212529;
+    color: white;
+}
+.btnAgregar:hover{
+    color: rgb(49, 105, 226);
+}
+.btnAgregar{
+    border-bottom: 2px solid rgb(49, 105, 226);
+}
+tr:hover{
+    background-color: gray !important;
+}
+.btnEditar:hover{
+    color: orange;
+}
+.btnEditar{
+    cursor: pointer;
+    border-bottom: 2px solid orange;
+}
+.btnEditarTable:hover{
+    color: orange;
+}
+.btnEditarTable{
+    cursor: pointer;
+}
+.btnEliminarTable:hover{
+    color: brown;
+}
+.btnEliminarTable{
+    cursor: pointer;
+}
+.btnLimpiar:hover{
+    color: green;
+}
+.btnLimpiar{
+    border-bottom: 2px solid green;
+}
+
+.f-s{
+    font-size: 1.5rem;
+}
+.w-1{
+    width: 50px;
+}
+.text-blue{
+    color: var(--text-primary);
+    width: 70px;
+    height: 70px;
+}

@@ -3,7 +3,7 @@ import React from "react";
 export const Table = ({ data, setDataToEdit, deleteData }) => {
   return (
     <div className="table-responsive">
-      <table className="table">
+      <table className="table table-dark">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -20,11 +20,11 @@ export const Table = ({ data, setDataToEdit, deleteData }) => {
                 <td>{el.name}</td>
                 <td>{el.categorie.name}</td>
                 <td>{el.price}</td>
-                <td>{el.img}</td>
+                <td><a href={el.img}><img src={el.img} className='w-1' alt="" /></a></td>
                 <td>
-                  <div className="d-flex flex-column">
-                    <button className="btn btn-warning " onClick={()=>setDataToEdit(el)}>Editar</button>
-                    <button className="btn btn-danger  mt-1"  onClick={()=>deleteData(el)} >Eliminar</button>
+                  <div className="d-flex flex-column text-center">
+                    <span className="btnEditarTable" onClick={()=>setDataToEdit(el)}>Editar</span>
+                    <span className="btnEliminarTable mt-1"  onClick={()=>deleteData(el._id)} >Eliminar</span>
                   </div>
                 </td>
               </tr>

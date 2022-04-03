@@ -1,4 +1,4 @@
-import "./header.css";
+import "../css/header.css";
 import { NavLink} from "react-router-dom";
 import { useState,useRef, useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
@@ -19,8 +19,13 @@ export const Header = () => {
   const refMenuBtn = useRef();
   const refNav = useRef();
   const refIconToggle = useRef();
+  const refUl = useRef();
 
-  const handleToggleMenu = ()=>{
+  const handleToggleMenu = (e,data)=>{
+    if(data == 'NavLink'){
+      document.title = e.target.textContent;
+      console.log(e);
+    }
     if(menuToggle){
       setMenuToggle(false)
       refMenu.current.style.top = '-100%';
@@ -35,20 +40,25 @@ export const Header = () => {
 }
   return (
     <>
-    <div className="topNav"></div>
     <nav ref={refNav} className="navContainer">
-      <button onClick={handleToggleMenu} ref={refMenuBtn} className="btnToggle"><i ref={refIconToggle} className="bi bi-list fs-1"></i></button>
-      <ul ref={refMenu} className="ulItems">
-        <li><NavLink className={({isActive})=>isActive?'active':''} to='/'>Home</NavLink></li>
-        <li><NavLink className={({isActive})=>isActive?'active':''} to='/account'>Account</NavLink></li>
-        <li><NavLink className={({isActive})=>isActive?'active':''} to='/products'>Products</NavLink></li>
-        <li><NavLink className={({isActive})=>isActive?'active':''} to='/categories'>Categories</NavLink></li>
-        <li><button style={{
-          border:'none',
-          backgroundColor:'transparent',
-          padding:'0'
-        }} onClick={()=>logOut(setLogged)}><span className="text-logout">Log Out</span> <i className="bi bi-power fs-2 icon-logout"></i></button></li>
-      </ul>
+      <div className="d-flex align-items-center">
+        <button onClick={handleToggleMenu} ref={refMenuBtn} className="btnToggle"><i ref={refIconToggle} className="bi bi-list fs-1"></i></button>
+        <h1 className="title">{document.title}</h1>
+      </div>
+      <div ref={refMenu} className="ulContainer">
+        <ul ref={refUl} className="ulItems">
+          <li><NavLink onClick={(e)=>handleToggleMenu(e,'NavLink')} className={({isActive})=>isActive?'active':''} to='/'>Inicio</NavLink></li>
+          <li><NavLink onClick={(e)=>handleToggleMenu(e,'NavLink')} className={({isActive})=>isActive?'active':''} to='/account'>Cuenta</NavLink></li>
+          <li><NavLink onClick={(e)=>handleToggleMenu(e,'NavLink')} className={({isActive})=>isActive?'active':''} to='/products'>Productos</NavLink></li>
+          <li><NavLink onClick={(e)=>handleToggleMenu(e,'NavLink')} className={({isActive})=>isActive?'active':''} to='/categories'>Categorias</NavLink></li>
+          <li><button style={{
+            border:'none',
+            backgroundColor:'transparent',
+            padding:'0'
+          }} onClick={()=>logOut(setLogged)}><span className="text-logout">Log Out</span> <i className="bi bi-power fs-2 icon-logout"></i></button></li>
+        </ul>
+
+      </div>
     </nav>
     </>
   );
